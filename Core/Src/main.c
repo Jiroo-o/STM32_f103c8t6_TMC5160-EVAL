@@ -15,7 +15,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
-#include <math.h> // เผื่อใช้ abs
+#include <math.h>
+#include <stdlib.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,7 +75,7 @@ int32_t TMC5160_ConvertSpeed(float steps_per_sec) {
 
 // อัปเดตฟังก์ชัน Rotate ให้รับค่า PPS ตรงๆ
 void TMC5160_Rotate_PPS(float pps) {
-	uint32_t vmax_val = (uint32_t) fabs(TMC5160_ConvertSpeed(pps));
+	uint32_t vmax_val = (uint32_t) abs(TMC5160_ConvertSpeed(pps));
 
 	if (pps >= 0) {
 		TMC5160_WriteReg(0x20, 1); // RAMPMODE = Velocity Positive
